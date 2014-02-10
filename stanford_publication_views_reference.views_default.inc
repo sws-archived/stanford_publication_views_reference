@@ -36,30 +36,11 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['exposed_form']['options']['submit_button'] = 'Go';
   $handler->display->display_options['exposed_form']['options']['reset_button'] = TRUE;
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '21';
+  $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['style_options']['row_class'] = 'views-align-center';
   $handler->display->display_options['row_plugin'] = 'fields';
-  /* Relationship: Content: Taxonomy terms on node */
-  $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
-  $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  $handler->display->display_options['relationships']['term_node_tid']['vocabularies'] = array(
-    'publication_type' => 'publication_type',
-    'stanford_faculty_type' => 0,
-    'stanford_field_of_study' => 0,
-    'news_categories' => 0,
-    'stanford_interests' => 0,
-    'stanford_staff_type' => 0,
-    'stanford_event_audience' => 0,
-    'stanford_event_categories' => 0,
-    'stanford_student_type' => 0,
-    'tags' => 0,
-  );
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -67,7 +48,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field: Image */
+  /* Field: Field: Featured Image */
   $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
@@ -120,11 +101,6 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['field_s_pub_type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_s_pub_type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_s_pub_type']['type'] = 'taxonomy_term_reference_plain';
-  /* Sort criterion: Taxonomy vocabulary: Weight */
-  $handler->display->display_options['sorts']['weight']['id'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['table'] = 'taxonomy_vocabulary';
-  $handler->display->display_options['sorts']['weight']['field'] = 'weight';
-  $handler->display->display_options['sorts']['weight']['relationship'] = 'term_node_tid';
   /* Sort criterion: Content: Publication Year (field_s_publication_year) */
   $handler->display->display_options['sorts']['field_s_publication_year_value']['id'] = 'field_s_publication_year_value';
   $handler->display->display_options['sorts']['field_s_publication_year_value']['table'] = 'field_data_field_s_publication_year';
@@ -134,8 +110,8 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['id'] = 'field_s_person_link_target_id';
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['table'] = 'field_data_field_s_person_link';
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['field'] = 'field_s_person_link_target_id';
-  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['field_s_person_link_target_id']['default_argument_type'] = 'node';
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_s_person_link_target_id']['summary_options']['items_per_page'] = '25';
@@ -222,7 +198,7 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['nid']['label'] = '';
   $handler->display->display_options['fields']['nid']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Field: Image */
+  /* Field: Field: Featured Image */
   $handler->display->display_options['fields']['field_s_image_info']['id'] = 'field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['table'] = 'field_data_field_s_image_info';
   $handler->display->display_options['fields']['field_s_image_info']['field'] = 'field_s_image_info';
@@ -248,10 +224,8 @@ function stanford_publication_views_reference_views_default_views() {
   $handler->display->display_options['fields']['field_s_person_link']['id'] = 'field_s_person_link';
   $handler->display->display_options['fields']['field_s_person_link']['table'] = 'field_data_field_s_person_link';
   $handler->display->display_options['fields']['field_s_person_link']['field'] = 'field_s_person_link';
-  $handler->display->display_options['fields']['field_s_person_link']['relationship'] = 'field_s_person_link_target_id';
   $handler->display->display_options['fields']['field_s_person_link']['label'] = '';
   $handler->display->display_options['fields']['field_s_person_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_s_person_link']['type'] = 'entityreference_entity_id';
   $handler->display->display_options['fields']['field_s_person_link']['settings'] = array(
     'link' => 1,
   );
